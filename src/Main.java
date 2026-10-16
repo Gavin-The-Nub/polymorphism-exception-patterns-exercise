@@ -132,7 +132,7 @@ public class Main {
     }
 
     private static int promptDimension(String label) {
-        return prompt("Enter " + label + " in cm: ",
+        return prompt("Enter " + label + " in cm (max " + Box.MAX_DIMENSION + "): ",
                 in -> Box.validateDimension(parseInt(in, label), label));
     }
 

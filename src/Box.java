@@ -10,10 +10,11 @@ public class Box extends Parcel {
     public static final double MAX_WEIGHT         = 50.0;
     public static final double RATE_PER_KG        = 40.0;
     public static final double VOLUMETRIC_DIVISOR = 3500.0;
+    public static final int    MAX_DIMENSION      = 150; // cm
 
-    private final int length; // cm, > 0
-    private final int width;  // cm, > 0
-    private final int height; // cm, > 0
+    private final int length; // cm, 1 to 150
+    private final int width;  // cm, 1 to 150
+    private final int height; // cm, 1 to 150
 
     public Box(String trackingNumber, String receiverName, double weight,
                int length, int width, int height) throws InvalidInputException {
@@ -26,6 +27,9 @@ public class Box extends Parcel {
     public static int validateDimension(int value, String label) throws InvalidInputException {
         if (value <= 0) {
             throw new InvalidInputException(label + " must be a whole number greater than 0 cm.");
+        }
+        if (value > MAX_DIMENSION) {
+            throw new InvalidInputException(label + " cannot exceed " + MAX_DIMENSION + " cm.");
         }
         return value;
     }
